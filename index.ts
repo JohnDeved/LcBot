@@ -1,9 +1,11 @@
 
 import { Client, Message } from 'discord.js'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 class LcBot {
   private client: Client = new Client()
-  private token: string = 'NDc5MzQ3OTIxMjg5MjE2MDIw.DneRkA.NU8AIAvk4GpWpc9alGEEGZOag90'
+  private token: string = process.env.TOKEN
 
   private parseArgs (msg): string[] {
     let args = msg.content.split(';')
@@ -23,6 +25,7 @@ class LcBot {
       console.log(`Logged in as ${this.client.user.tag}!`)
     },
     message: (msg: Message) => {
+      if (!/^!([\w_]+)/.test(msg.content)) { return }
       const [, command ]: RegExpMatchArray = msg.content.match(/^!([\w_]+)/)
       console.log(command)
       if (command && this.commands[command]) {
