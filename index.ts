@@ -7,7 +7,7 @@ import * as commads from './modules'
 
 class LcBot {
   private commands = commads
-  
+
   private client: Client = new Client()
   private token: string = process.env.TOKEN
 
@@ -23,9 +23,10 @@ class LcBot {
       console.log(`Logged in as ${this.client.user.tag}!`)
     },
     message: (msg: Message) => {
-      if (!/^!([\w_]+)/.test(msg.content)) { return }
-      const [, command ]: RegExpMatchArray = msg.content.match(/^!([\w_]+)/)
-      const rest: string = msg.content.replace(/^!([\w_]+)/, '')
+      const regex: RegExp = /^!([\w_]+)/
+      if (!regex.test(msg.content)) { return }
+      const [, command ]: RegExpMatchArray = msg.content.match(regex)
+      const rest: string = msg.content.replace(regex, '')
 
       if (command && this.commands[command]) {
         const args: string[] = this.parseArgs(rest)
