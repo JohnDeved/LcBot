@@ -3,7 +3,11 @@ import { Client, Message } from 'discord.js'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
+import * as commads from './modules'
+
 class LcBot {
+  private commands = commads
+  
   private client: Client = new Client()
   private token: string = process.env.TOKEN
 
@@ -12,12 +16,6 @@ class LcBot {
     args = args.map(el => el.trim())
     args = args.filter(el => el !== '')
     return args
-  }
-
-  private commands: object = {
-    test: (msg: Message, ...args: string[]) => {
-      msg.reply('hello world ' + args)
-    }
   }
 
   private on: object = {
