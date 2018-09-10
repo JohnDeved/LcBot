@@ -27,9 +27,9 @@ class LcBot {
     message: (msg: Message) => {
       if (!/^!([\w_]+)/.test(msg.content)) { return }
       const [, command ]: RegExpMatchArray = msg.content.match(/^!([\w_]+)/)
-      console.log(command)
+
       if (command && this.commands[command]) {
-        const args = this.parseArgs(msg)
+        const args: string[] = this.parseArgs(msg)
         this.commands[command](msg, ...args)
       } else {
         command && msg.reply(`unknown command \`${command}\``)
@@ -48,7 +48,8 @@ class LcBot {
 
   constructor () {
     this.client.login(this.token)
+    this.init()
   }
 }
 
-export default new LcBot().init()
+export default new LcBot()
