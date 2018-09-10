@@ -8,15 +8,15 @@ class LcBot {
   private token: string = process.env.TOKEN
 
   private parseArgs (msg): string[] {
-    let args = msg.content.split(';')
+    let args = msg.split(';')
     args = args.map(el => el.trim())
     args = args.filter(el => el !== '')
     return args
   }
 
   private commands: object = {
-    test: (msg: Message) => {
-      msg.reply('hello world')
+    test: (msg: Message, ...args: string[]) => {
+      msg.reply('hello world ' + args)
     }
   }
 
@@ -27,12 +27,13 @@ class LcBot {
     message: (msg: Message) => {
       if (!/^!([\w_]+)/.test(msg.content)) { return }
       const [, command ]: RegExpMatchArray = msg.content.match(/^!([\w_]+)/)
+      const rest: string = msg.content.replace(/^!([\w_]+)/, '')
 
       if (command && this.commands[command]) {
-        const args: string[] = this.parseArgs(msg)
+        const args: string[] = this.parseArgs(rest)
         this.commands[command](msg, ...args)
       } else {
-        command && msg.reply(`unknown command \`${command}\``)
+        msg.reply(`unknown command \`${command}\``)
       }
     }
   }
