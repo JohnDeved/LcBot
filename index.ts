@@ -3,11 +3,10 @@ import { Client, Message } from 'discord.js'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import { commands } from './modules'
-console.log(commands)
+import commands, { Icommands } from './modules'
 
 class LcBot {
-  private commands = commands
+  private commands: Icommands = commands
 
   private client: Client = new Client()
   private token: string = process.env.TOKEN
