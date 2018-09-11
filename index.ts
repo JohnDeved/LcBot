@@ -28,7 +28,7 @@ class LcBot {
       const [, command ]: RegExpMatchArray = msg.content.match(regex)
       const rest: string = msg.content.replace(regex, '')
 
-      if (command && this.commands[command]) {
+      if (this.commands[command]) {
         const args: string[] = this.parseArgs(rest)
         this.commands[command](msg, ...args)
       } else {
