@@ -5,5 +5,5 @@ export interface Itest {
 }
 
 module.exports = async (msg: Message, ...args: string[]) => {
-    return msg.reply(`hello world ${JSON.stringify(args)}`)
+    await msg.reply(`hello world ${JSON.stringify(args)}`)
 }

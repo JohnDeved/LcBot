@@ -23,10 +23,10 @@ class LcBot {
   }
 
   private on: object = {
-    ready: () => {
+    ready: (): void => {
       console.log(`Logged in as ${this.client.user.tag}!`)
     },
-    message: (msg: Message) => {
+    message: (msg: Message): void => {
       const regex: RegExp = /^!([\w_]+)/
       if (!regex.test(msg.content)) { return }
       const [, command ]: RegExpMatchArray = msg.content.match(regex)
