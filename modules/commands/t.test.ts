@@ -1,9 +1,13 @@
 import { Message } from "discord.js";
 
 export interface Itest {
-    (msg: Message): Promise<Message | Message[]>
+    (msg: Message, ...args: string[]): Promise<Message | Message[]>
 }
 
-module.exports = async (msg: Message, ...args: string[]) => {
-    await msg.reply(`hello world ${JSON.stringify(args)}`)
+module.exports = {
+    description: 'test command used for debugging',
+    handler: async (msg: Message, ...args: string[]) => {
+        await msg.reply(`hello world ${JSON.stringify(args)}`)
+    }
 }
+

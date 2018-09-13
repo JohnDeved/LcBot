@@ -7,6 +7,7 @@ export interface Icommands {
 }
 
 const commands: Icommands = {}
+const info: object[] = []
 
 const path = join(__dirname, 'commands')
 readdir(path, (err, files) => {
@@ -16,13 +17,17 @@ readdir(path, (err, files) => {
         const regex = /^(([\w_]+)\.|)([\w_]+)\.js$/
         if (regex.test(file)) {
             const [,, shorthand, command] = file.match(regex)
+            const { description, handler } = require(join(path, file))
+            info.push({ command, shorthand, description })
 
-            const handler = require(join(path, file))
             commands[command] = handler
-            if (shorthand)
+            if (shorthand) {
                 commands[shorthand] = handler
+            }
         }
     })
 })
+
+export { info }
 
 export default commands
