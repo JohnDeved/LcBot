@@ -6,8 +6,14 @@ export interface Icommands {
     test?: Itest
 }
 
+export interface Iinfo {
+    command: string,
+    shorthand?: string,
+    description: string
+}
+
 const commands: Icommands = {}
-const info: object[] = []
+const info: Iinfo[] = []
 
 const path = join(__dirname, 'commands')
 readdir(path, (err, files) => {
