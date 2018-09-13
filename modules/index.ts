@@ -1,9 +1,19 @@
 import { readdir } from 'fs';
 import { join } from 'path';
 import { Itest } from './commands/t.test';
+import { Message } from 'discord.js';
 
 export interface Icommands {
     test?: Itest
+}
+
+export interface IcommandExportFunction {
+    (msg: Message)
+}
+
+export interface IcommandExport {
+    description: string,
+    handler: IcommandExportFunction
 }
 
 export interface Iinfo {

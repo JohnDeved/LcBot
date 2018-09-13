@@ -1,11 +1,11 @@
 import { Message, RichEmbed } from "discord.js";
-import { info, Iinfo } from "..";
+import { info, Iinfo, IcommandExport } from "..";
 
 export interface Ihelp {
     (msg: Message): Promise<Message | Message[]>
 }
 
-module.exports = {
+const exp: IcommandExport = {
     description: 'list all the available commands',
     handler: async (msg: Message) => {
         const embed = new RichEmbed()
@@ -17,6 +17,8 @@ module.exports = {
                 embed.addField('!' + i.command, i.description + '\n___')
             }
         })
-        msg.reply({ embed })
+        await msg.reply({ embed })
     }
 }
+
+module.exports = exp
