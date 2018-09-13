@@ -11,10 +11,14 @@ class LcBot {
   private client: Client = new Client()
   private token: string = process.env.TOKEN
 
-  private parseArgs (msg): string[] {
-    let args = msg.split(';')
-    args = args.map(el => el.trim())
-    args = args.filter(el => el !== '')
+  private parseArgs (str: string): string[] {
+    let args: string[] = str.match(/[^" ]+|"(?:.)+?[^\\]"/g)
+    if (!args) { return [] }
+    args = args.map((x: string) => {
+      return x
+        .replace(/^"|"$/g, '')
+        .replace(/\\"/g, '"')
+    })
     return args
   }
 
