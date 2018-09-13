@@ -25,15 +25,15 @@ export interface Iinfo {
 const commands: Icommands = {}
 const info: Iinfo[] = []
 
-const path = join(__dirname, 'commands')
+const path: string = join(__dirname, 'commands')
 readdir(path, (err, files) => {
   if (err) return console.error(err)
 
   files.forEach((file: string) => {
     const regex = /^(([\w_]+)\.|)([\w_]+)\.js$/
     if (regex.test(file)) {
-      const [,, shorthand, command] = file.match(regex)
-      const { description, handler } = require(join(path, file))
+      const [,, shorthand, command]: RegExpMatchArray = file.match(regex)
+      const { description, handler }: IcommandExport = require(join(path, file))
       info.push({ command, shorthand, description })
 
       commands[command] = handler
