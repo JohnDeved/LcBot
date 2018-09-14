@@ -1,6 +1,6 @@
 import * as git from 'simple-git'
 import { Message, RichEmbed } from 'discord.js'
-import { IcommandExport } from '..'
+import commands, { IcommandExport } from '..'
 
 export interface Ipull {
   (msg: Message)
@@ -28,15 +28,8 @@ const exp: IcommandExport = {
 
         msg.reply(embed)
       })
-      .log(['-1'], (err, log) => {
-        if (err) return console.error(err)
-        const embed = new RichEmbed()
 
-        embed.setTitle(log.latest.author_name)
-        embed.addField(log.latest.hash.slice(0, 8) + ':', log.latest.message)
-
-        msg.reply('current commit:', { embed })
-      })
+    commands.current(msg)
   }
 }
 

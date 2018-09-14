@@ -4,11 +4,13 @@ import { Message } from 'discord.js'
 import { Itest } from './commands/t.test'
 import { Ihelp } from './commands/h.help'
 import { Ipull } from './commands/p.pull'
+import { Icurrent } from './commands/c.current'
 
 export interface Icommands {
   test?: Itest,
   help?: Ihelp,
-  pull?: Ipull
+  pull?: Ipull,
+  current?: Icurrent
 }
 
 export interface IcommandExportFunction {
