@@ -1,10 +1,14 @@
 import { readdir } from 'fs'
 import { join } from 'path'
-import { Itest } from './commands/t.test'
 import { Message } from 'discord.js'
+import { Itest } from './commands/t.test'
+import { Ihelp } from './commands/h.help'
+import { Ipull } from './commands/p.pull'
 
 export interface Icommands {
-  test?: Itest
+  test?: Itest,
+  help?: Ihelp,
+  pull?: Ipull
 }
 
 export interface IcommandExportFunction {

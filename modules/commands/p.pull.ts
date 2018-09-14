@@ -2,8 +2,8 @@ import * as git from 'simple-git'
 import { Message, RichEmbed } from 'discord.js'
 import { IcommandExport } from '..'
 
-export interface Itest {
-  (msg: Message, ...args: string[]): Promise<Message | Message[]>
+export interface Ipull {
+  (msg: Message)
 }
 
 const exp: IcommandExport = {

@@ -2,7 +2,7 @@ import { Message } from 'discord.js'
 import { IcommandExport } from '..'
 
 export interface Itest {
-  (msg: Message, ...args: string[]): Promise<Message | Message[]>
+  (msg: Message, ...args: string[])
 }
 
 const exp: IcommandExport = {

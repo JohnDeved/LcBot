@@ -2,7 +2,7 @@ import { Message, RichEmbed } from 'discord.js'
 import { info, Iinfo, IcommandExport } from '..'
 
 export interface Ihelp {
-  (msg: Message): Promise<Message | Message[]>
+  (msg: Message)
 }
 
 const exp: IcommandExport = {
