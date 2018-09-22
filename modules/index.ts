@@ -13,13 +13,9 @@ export interface Icommands {
   current?: Icurrent
 }
 
-export interface IcommandExportFunction {
-  (msg: Message)
-}
-
 export interface IcommandExport {
   description: string,
-  handler: IcommandExportFunction
+  handler: Function
 }
 
 export interface Iinfo {
